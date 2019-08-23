@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'node:lts-alpine'
+            image 'cypress/base:10'
             args '-p 3030:3030'
         }
     }
@@ -16,6 +16,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'npx cypress verify'
                 sh 'npm test'
             }
          }
